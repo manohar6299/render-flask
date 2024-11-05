@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff;
+            padding: 15px 30px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .navbar-logo img {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .navbar-username {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-left: 10px;
+            background-color: rgb(255, 110, 110);
+            padding: 5px 10px;
+            border-radius: 10px;
+        }
+
+        .navbar-links {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-links li {
+            margin: 0 10px;
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .navbar-links a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Hamburger Menu Icon */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            justify-content: center;
+        }
+
+        .menu-toggle div {
+            height: 3px;
+            width: 30px;
+            background-color: white;
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Responsive Navbar Styles */
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: #007bff;
+                padding: 10px 0;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+            .navbar-links.active {
+                display: flex;
+            }
+
+            .navbar-links li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Toggle Animation */
+            .menu-toggle.active div:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .menu-toggle.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active div:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+        }
+
+        .content {
+            margin-top: 80px; /* Prevents content overlap with navbar */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="window.location.href='{{ url_for('home') }}'">
+            <img src="https://img.freepik.com/free-vector/creative-gradient-code-logo_23-2148820572.jpg?ga=GA1.1.3132422.1692372283&semt=ais_hybrid" 
+                alt="Logo" />
+            {% if session.get('username') %}
+            <span class="navbar-username">{{ session['username'] }}</span>
+            {% endif %}
+        </div>
+
+        <div class="menu-toggle" id="menu-toggle" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <ul class="navbar-links" id="navbar-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('services') }}">Services</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('courses') }}">Courses</a></li>
+            <li><a href="{{ url_for('admin_dashboard') }}"  style="color: white; background-color: rgb(90, 226, 78);">Admin</a></li>
+
+
+            {% if session.get('username') %}
+            <li><a href="{{ url_for('logout') }}" style="background-color: red;">Logout</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menuToggle = document.getElementById("menu-toggle");
+            const navbarLinks = document.getElementById("navbar-links");
+            menuToggle.classList.toggle("active");
+            navbarLinks.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>

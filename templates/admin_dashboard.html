@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 2rem auto;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+        input, textarea, button {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .course-list {
+            margin-top: 1rem;
+        }
+        .course-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .delete-button {
+            background-color: #dc3545;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            color: white;
+            border-radius: 5px;
+        }
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .edit-button {
+    background-color: hsl(106, 100%, 51%);
+    color: white;
+    margin-top: 1px;
+    padding: 5px 4px;
+    margin-left: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.edit-button:hover {
+    background-color: #e0a800;
+}
+
+@media (max-width: 768px) {
+    .course-item div {
+        display: flex;
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 7px; /* Add space between buttons */
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .delete-button, .edit-button {
+        width: 100%; /* Full width buttons on very small screens */
+        text-align: center;
+    }
+
+    .course-item div {
+        gap: 15px; /* Increase gap between buttons */
+    }
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard - Add Courses</h1>
+        <form method="POST">
+            <label for="title">Course Title</label>
+            <input type="text" id="title" name="title" required>
+        
+            <label for="description">Course Description</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="video_url">YouTube Video URL</label>
+            <input type="url" id="video_url" name="video_url" required>
+        
+            <button type="submit">Add Course</button>
+        </form>
+
+        <div class="course-list">
+            <h2>Existing Courses</h2>
+            <ul>
+                {% for course in courses %}
+                    <li class="course-item">
+                        <span>
+                            <a href="{{ course.video_url }}" target="_blank">{{ course.title }}</a> - 
+                            {{ course.description }}
+                        </span>
+
+                        <div>
+                            <form method="POST" action="{{ url_for('delete_course', course_id=course.id) }}" style="display: inline;">
+                                <button type="submit" class="delete-button">Delete</button>
+                            </form>
+                            <a href="{{ url_for('edit_course', course_id=course.id) }}" class="edit-button">Edit</a>
+                        </div>
+
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

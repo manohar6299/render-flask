@@ -1,0 +1,249 @@
+{% extends 'navbar.html' %}
+{% set title = "Services" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #c0e5db6b;
+            color: #333;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #007bff;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .learn-more {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .learn-more:hover {
+            background-color: #0056b3;
+        }
+
+        .contact {
+            padding: 50px 20px;
+            background-color: #eef2f7;
+            text-align: center;
+        }
+
+        .contact h2 {
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            color: #222;
+        }
+
+        .contact-info {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .contact-info a {
+            color: #3a86ff;
+            text-decoration: none;
+        }
+
+        /* Map Section */
+        .map {
+            margin: 30px 0;
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">Our Services</h1>
+        <p class="subtitle">Explore our range of services designed to meet all your web development needs.</p>
+
+        <div class="service-list">
+            <!-- Web Development Service -->
+            <div class="service-card">
+                <h2>Web Development Service</h2>
+                <p>
+                    We build modern, responsive, and high-performance websites tailored to your business needs. 
+                    Our expertise includes front-end, backend, and full-stack development.
+                </p>
+                <a href="#" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Web Development Course -->
+            <div class="service-card">
+                <h2>Web Development Course</h2>
+                <p>
+                    Learn web development from scratch with our comprehensive courses. 
+                    Our training covers HTML, CSS, JavaScript, React, and backend technologies like Django and Flask.
+                </p>
+                <a href="#" class="learn-more">Enroll Now</a>
+            </div>
+
+            <!-- Web Development Notes -->
+            <div class="service-card">
+                <h2>Web Development Notes</h2>
+                <p>
+                    Access detailed notes and resources on web development, covering topics from beginner to advanced levels. 
+                    Perfect for self-study and quick reference.
+                </p>
+                <a href="#" class="learn-more">View Notes</a>
+            </div>
+
+            <!-- Backend Service -->
+            <div class="service-card">
+                <h2>Backend Service</h2>
+                <p>
+                    Our backend development services include building robust APIs, server management, and data handling using 
+                    frameworks like Django and Flask.
+                </p>
+                <a href="#" class="learn-more">Learn More</a>
+            </div>
+
+            <!-- Database Service -->
+            <div class="service-card">
+                <h2>Database Service</h2>
+                <p>
+                    We provide database management services, including PostgreSQL, MySQL, and MongoDB integration, 
+                    ensuring fast, secure, and scalable solutions for your business.
+                </p>
+                <a href="#" class="learn-more">Learn More</a>
+            </div>
+
+            <div class="service-card">
+                <h2>front-end Service</h2>
+                <p>
+                    We provide database management services, including PostgreSQL, MySQL, and MongoDB integration, 
+                    ensuring fast, secure, and scalable solutions for your business.
+                </p>
+                <a href="#" class="learn-more">Learn More</a>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <section class="contact">
+        <h2>Contact Us</h2>
+        <p class="contact-info">Phone: +123 456 7890</p>
+        <p class="contact-info">Email: <a href="mailto:info@webservices.com">info@webservices.com</a></p>
+        <p class="contact-info">Visit Us: 123 Web St, Tech City, 45678</p>
+
+        <!-- Map Section -->
+        <div class="map">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345092067!2d144.95592331561698!3d-37.81720997975154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43f3fbd4af%3A0x5045675218ce840!2sMelbourne%20VIC!5e0!3m2!1sen!2sau!4v1634599092493!5m2!1sen!2sau" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Web Services Provider Manohar. All Rights Reserved.</p>
+    </footer>
+
+
+</body>
+</html>
+{% endblock %}
