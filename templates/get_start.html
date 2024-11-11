@@ -1,4 +1,3 @@
-<!-- templates/get_started.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,15 +17,15 @@
             flex-direction: column;
             min-height: 100vh;
             background-color: #f0f2f5;
-            overflow-x: hidden;
             color: #333;
+            overflow-x: hidden;
         }
         header {
             background-color: #1f2937;
             padding: 20px;
             color: #f3f4f6;
             text-align: center;
-            font-size: 26px;
+            font-size: 1.6rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -38,27 +37,28 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 40px;
+            padding: 20px;
             max-width: 800px;
             margin: 0 auto;
             animation: fadeIn 1.5s ease-in-out;
         }
         .content h1 {
-            font-size: 36px;
+            font-size: 2rem;
             margin-bottom: 15px;
             color: #1f2937;
             font-weight: 600;
         }
         .content p {
-            font-size: 18px;
+            font-size: 1rem;
             margin-bottom: 25px;
             color: #555;
             line-height: 1.6;
+            max-width: 600px;
         }
         .image-container {
             width: 80%;
-            max-width: 600px;
-            margin: 30px auto;
+            max-width: 500px;
+            margin: 20px auto;
             overflow: hidden;
             border-radius: 10px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -66,6 +66,7 @@
         }
         .image-container img {
             width: 100%;
+            height: auto;
             display: block;
             transition: transform 0.3s ease-in-out;
         }
@@ -73,16 +74,18 @@
             transform: scale(1.05);
         }
         button {
-            padding: 15px 40px;
+            padding: 12px 30px;
             background-color: #2563eb;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 1rem;
             font-weight: 500;
             transition: background-color 0.3s ease, transform 0.2s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 200px;
+            width: 100%;
         }
         button:hover {
             background-color: #1d4ed8;
@@ -93,7 +96,7 @@
             color: #9ca3af;
             text-align: center;
             padding: 15px 0;
-            font-size: 14px;
+            font-size: 0.9rem;
             letter-spacing: 0.5px;
         }
         footer a {
@@ -114,6 +117,38 @@
             from { transform: translateY(20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header {
+                font-size: 1.4rem;
+                padding: 15px;
+            }
+            .content h1 {
+                font-size: 1.8rem;
+            }
+            .content p {
+                font-size: 0.9rem;
+            }
+            button {
+                font-size: 0.9rem;
+                padding: 10px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content h1 {
+                font-size: 1.6rem;
+            }
+            .content p {
+                font-size: 0.8rem;
+                margin-bottom: 20px;
+            }
+            button {
+                font-size: 0.85rem;
+                padding: 8px 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -130,7 +165,7 @@
 
         <!-- Image Section -->
         <div class="image-container">
-            <img   style="height: 200px; width: 600px;" src="https://www.shutterstock.com/image-photo/programmer-people-working-laptops-smartphones-260nw-2473384115.jpg" alt="Software Development">
+            <img src="https://stridefuture.com/wp-content/uploads/Software-Development-Tools-to-Ace-Your-Business-Blog.png" alt="Software Development">
         </div>
 
         <button onclick="window.location.href='/login'">Get Started</button>
