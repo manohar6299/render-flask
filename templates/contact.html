@@ -1,282 +1,286 @@
-{% extends 'navbar.html' %}
-{% set title = "Contact Us" %}
-
-{% block content %}
+{% extends 'navbar.html' %} {% set title = "Contact Us" %} {% block content %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <style>
-        /* Global Styling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #9ed3da;
-            color: #333;
-        }
-
-        .container {
-            width: 85%;
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 1rem;
-        }
-
-        .page-title {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 2rem;
-        }
-
-        .profile-section {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-            gap: 1.5rem;
-            justify-content: center; /* Center profile section */
-        }
-
-        .profile-pic {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-info h2 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .profile-info p {
-            font-size: 1rem;
-            color: #555;
-        }
-
-        .contact-form {
-            background-color: #fff;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-        }
-
-        .contact-form h2 {
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        .contact-form button {
-            width: 100%;
-            padding: 1rem;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
-        .contact-form button:hover {
-            background-color: #0056b3;
-        }
-
-        .social-media {
-            text-align: center;
-            margin-top: 1.5rem;
-        }
-
-        .social-media a {
-            margin: 0 10px;
-            font-size: 2rem;
-            text-decoration: none;
-            color: #555;
-            transition: color 0.3s;
-        }
-
-        .social-media a:hover {
-            color: #4949e2;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .profile-section {
-                flex-direction: column;
-                align-items: center;
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Contact Us</title>
+        <style>
+            /* Global Styling */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
             }
 
-            .profile-pic {
-                width: 80px;
-                height: 80px;
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #9ed3da;
+                color: #333;
+            }
+
+            .container {
+                width: 85%;
+                max-width: 1200px;
+                margin: 2rem auto;
+                padding: 1rem;
+            }
+
+            .page-title {
+                text-align: center;
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+            }
+
+            .subtitle {
+                text-align: center;
+                font-size: 1.2rem;
+                color: #555;
+                margin-bottom: 2rem;
+            }
+
+        .profile-section {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5rem;
+        gap: 1.5rem;
+        justify-content: center; /* Center profile section */
+    }
+
+    .profile-pic {
+        width: 120px;
+        height: 130px;
+        border-radius: 10%;
+        margin-bottom: 10px;
+        object-fit: cover;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-top: -40px; /* Move the profile picture slightly up */
+    }
+            .profile-info h2 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .profile-info p {
+                font-size: 1rem;
+                color: #555;
+            }
+
+            .contact-form {
+                background-color: #fff;
+                padding: 2rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                margin-bottom: 2rem;
             }
 
             .contact-form h2 {
-                font-size: 1.5rem;
-            }
-        }
-
-        .contact {
-            padding: 50px 20px;
-            background-color: #eef2f7;
-            text-align: center;
-        }
-
-        .contact h2 {
-            margin-bottom: 30px;
-            font-size: 2.5rem;
-            color: #222;
-        }
-
-        .contact-info {
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-            color: #555;
-        }
-
-        .contact-info a {
-            color: #3a86ff;
-            text-decoration: none;
-        }
-
-        /* Map Section */
-        .map {
-            margin: 30px 0;
-            width: 100%;
-            height: 300px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #222;
-            color: white;
-            padding: 25px 0;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        footer p {
-            margin: 0;
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2.2rem;
+                margin-bottom: 1rem;
+                font-size: 1.8rem;
             }
 
-            .cta-button {
-                padding: 12px 30px;
+            .contact-form input,
+            .contact-form textarea {
+                width: 100%;
+                padding: 0.8rem;
+                margin-bottom: 1rem;
+                border: 1px solid #ddd;
+                border-radius: 4px;
                 font-size: 1rem;
             }
-        }
 
+            .contact-form button {
+                width: 100%;
+                padding: 1rem;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                font-size: 1rem;
+                cursor: pointer;
+            }
 
+            .contact-form button:hover {
+                background-color: #0056b3;
+            }
 
+            .social-media {
+                text-align: center;
+                margin-top: 1.5rem;
+            }
 
+            .social-media a {
+                margin: 0 10px;
+                font-size: 2rem;
+                text-decoration: none;
+                color: #555;
+                transition: color 0.3s;
+            }
 
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1 class="page-title">Contact Us</h1>
-        <p class="subtitle">Get in touch with us for any queries or business inquiries.</p>
+            .social-media a:hover {
+                color: #4949e2;
+            }
 
-        <!-- Profile Section -->
-        <div class="profile-section">
-            <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Profile Picture" class="profile-pic">
-            <div class="profile-info">
-                <h2>Manohar gupta</h2>
-                <p>Lead Developer & CEO</p>
-                <p>Email: code629925@gmail.com</p>
-                <p>Phone: +9472287320</p>
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                .profile-section {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .profile-pic {
+                    width: 80px;
+                    height: 80px;
+                    margin-bottom: 10px;
+                }
+
+                .contact-form h2 {
+                    font-size: 1.5rem;
+                }
+            }
+
+            .contact {
+                padding: 50px 20px;
+                background-color: #eef2f7;
+                text-align: center;
+            }
+
+            .contact h2 {
+                margin-bottom: 30px;
+                font-size: 2.5rem;
+                color: #222;
+            }
+
+            .contact-info {
+                margin-bottom: 15px;
+                font-size: 1.2rem;
+                color: #555;
+            }
+
+            .contact-info a {
+                color: #3a86ff;
+                text-decoration: none;
+            }
+
+            /* Map Section */
+            .map {
+                margin: 30px 0;
+                width: 100%;
+                height: 300px;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            /* Footer */
+            footer {
+                background-color: #222;
+                color: white;
+                padding: 25px 0;
+                text-align: center;
+                font-size: 0.9rem;
+            }
+
+            footer p {
+                margin: 0;
+                letter-spacing: 1px;
+            }
+
+            @media (max-width: 768px) {
+                .hero h2 {
+                    font-size: 2.2rem;
+                }
+
+                .cta-button {
+                    padding: 12px 30px;
+                    font-size: 1rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="page-title">Contact Us</h1>
+            <p class="subtitle">Get in touch with us for any queries or business inquiries.</p>
+
+            <!-- Profile Section -->
+            <div class="profile-section">
+                <img src="{{ url_for('static', filename='images/manohar-img.jpg') }}" alt="Profile Picture" class="profile-pic" />
+
+                <div class="profile-info">
+                    <h2>Manohar gupta</h2>
+                    <p>Lead Developer & CEO</p>
+                    <p> I am a Bachelor of Computer Applications (BCA) student with a passion for 
+                        Python programming and Linux development. <h3>My skills</h3>    (  html , css, JavaScript, 
+                        React, node-js, tailween, python ,flask, djando, Linux, php, Sql, PostgreSQL, AI   )   
+                          I am familiar with the fundamentals of software development and enjoy learning 
+                          new technologies to enhance my capabilities. With a strong foundation in programming 
+                          and system administration, I aim to solve real-world problems and improve my technical knowledge.</p>
+                    <p>Email: code629925@gmail.com</p>
+                    <p>Phone: +9472287320</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <form action="/contact" method="POST">
+                    <input type="text" name="username" placeholder="Your Name" required />
+                    <input type="email" name="email" placeholder="Your Email" required />
+                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="social-media">
+                <h3>Follow Us</h3>
+                <a href="https://facebook.com" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/manohar-gupta-b484b7252/" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/manohar6299/react-project" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
             </div>
         </div>
 
-        <!-- Contact Form -->
-        <div class="contact-form">
-            <h2>Send Us a Message</h2>
-            <form action="/contact" method="POST">
-                <input type="text" name="username" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+        <!-- FontAwesome CDN -->
+        <!-- FontAwesome Icons -->
+        <!-- FontAwesome CDN -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-        <!-- Social Media Links -->
-        <div class="social-media">
-            <h3>Follow Us</h3>
-            <a href="https://facebook.com" target="_blank" title="Facebook">
-                <i class="fab fa-facebook"></i>
-            </a>
-            <a href="https://twitter.com" target="_blank" title="Twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://linkedin.com" target="_blank" title="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://github.com" target="_blank" title="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-        </div>
-    </div>
+        <section class="contact">
+            <h2>Contact Us</h2>
+            <p class="contact-info">Phone: +9472287320</p>
+            <p class="contact-info">
+                Email: <a href="mailto:code629925@gmail.com">Aura Emanating Teknology Pvt Ltd</a>
+            </p>
+            <p class="contact-info">Visit Us: 123 Web St, mayur Bihar Delhi, 110091</p>
 
-    <!-- FontAwesome CDN -->
-<!-- FontAwesome Icons -->
-<!-- FontAwesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+            <!-- Map Section -->
+            <div class="map" style="width: 100%; height: 400px">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.335635315216!2d77.29838867409374!3d28.619701184665818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce4ba7ecc29d7%3A0x33a544c821e1586d!2sAura%20Emanating%20Teknology%20Pvt%20Ltd.!5e0!3m2!1sen!2sin!4v1731490103210!5m2!1sen!2sin" 
+                    height="100%"
+                    width="100%"
+                    style="border: 0"
+                    allowfullscreen=""
+                    loading="lazy"
+                >
+                </iframe>
+            </div>
+        </section>
 
-
-<section class="contact">
-    <h2>Contact Us</h2>
-    <p class="contact-info">Phone: +9472287320</p>
-    <p class="contact-info">Email: <a href="mailto:info@webservices.com">info@webservices.com</a></p>
-    <p class="contact-info">Visit Us: 123 Web St, mayur Bihar Delhi, 11090</p>
-
-    <!-- Map Section -->
-    <div class="map">
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345092067!2d144.95592331561698!3d-37.81720997975154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43f3fbd4af%3A0x5045675218ce840!2sMelbourne%20VIC!5e0!3m2!1sen!2sau!4v1634599092493!5m2!1sen!2sau" 
-            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-        </iframe>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer>
-    <p>&copy; 2024 Web Services Provider Manohar. All Rights Reserved.</p>
-</footer>
-
-
-
-</body>
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 Web Services Provider Manohar. All Rights Reserved.</p>
+        </footer>
+    </body>
 </html>
 {% endblock %}

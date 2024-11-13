@@ -1,5 +1,9 @@
 from flask import Flask, request, render_template, redirect, session, url_for
-from flask_sqlalchemy import SQLAlchemy  # Import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy # Import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy 
+import os
+from dotenv import load_dotenv
+
 import bcrypt
 from itsdangerous import URLSafeTimedSerializer
 from flask_mail import Mail, Message
@@ -7,8 +11,13 @@ from functools import wraps
 from datetime import datetime
 from flask_cors import CORS
 
+
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+load_dotenv()
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('postgresql://manohar:Z5Y6y87JGnVqFmwcLnC1hSwA4PbPwwN5@dpg-csfsvrrtq21c73a89r3g-a/manohar')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://manohar:Z5Y6y87JGnVqFmwcLnC1hSwA4PbPwwN5@dpg-csfsvrrtq21c73a89r3g-a.oregon-postgres.render.com/manohar'
+app.config['ADMIN_KEY'] = os.getenv('ADMIN_KEY')
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
@@ -104,7 +113,7 @@ def edit_course(course_id):
         course.video_url = request.form['video_url']
 
         db.session.commit()
-        return redirect(url_for('admin_dashboard'))
+        return redirect(url_for('admin_dashboard'))    
 
     return render_template('edit_course.html', course=course)
 
@@ -141,7 +150,11 @@ def register():
         email = request.form['email']
         password = request.form['password']
         is_admin = request.form.get('is_admin') == 'on'  # Checkbox for admin
-
+        admin_key = request.form.get('admin_key')
+        
+        if is_admin and admin_key != app.config['ADMIN_KEY']:
+            return render_template('register.html', error='Invalid admin key.')
+        
         existing_user = Users.query.filter_by(email=email).first()
         if existing_user:
             return render_template('register.html', error='Email already registered.')
